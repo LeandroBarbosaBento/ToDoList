@@ -10,9 +10,10 @@
     -->
 
     <link rel="stylesheet" href="{{asset('assets/bootstrap/bootstrap.min.css')}}">
-    <script src="{{asset('assets/jquery.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('assets/fontawesome/font-awesome.min.css')}}">
-
+    <!--
+        INSERÇÃO DE ARQUIVOS DO FONTAWESOME
+    -->
+    <link rel="stylesheet" href="{{asset('assets/fontawesome/all.min.css')}}">
 
     <title>TODO LIST</title>
 </head>
@@ -40,7 +41,7 @@
     </div>
     
 
-    <script src="{{asset('assets/bootstrap/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/bootstrap/bootstrap.bundle.js')}}"></script>
     
 </body>
 </html>
