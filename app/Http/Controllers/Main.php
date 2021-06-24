@@ -21,6 +21,14 @@ class Main extends Controller
          */
     }
     // ===============================================
+    public function home_done_tasks(){
+        $tasks = Task::where('done', '!=', null)
+                    ->orderBy('created_at','desc')
+                    ->get();
+        return view('home', ['tasks' => $tasks]);
+    }
+
+    // ===============================================
     public function new_task_form(){
         return view('new_task_form');
     }
@@ -38,6 +46,7 @@ class Main extends Controller
     public function show_home(){
 
         $tasks = Task::where('context', 'home')
+                    ->where('done', '!=', null)
                     ->orderBy('created_at','desc')
                     ->get();
 
@@ -48,6 +57,7 @@ class Main extends Controller
     public function show_work(){
 
         $tasks = Task::where('context', 'work')
+                    ->where('done', '!=', null)
                     ->orderBy('created_at','desc')
                     ->get();
 
@@ -57,6 +67,7 @@ class Main extends Controller
     public function show_computer(){
 
         $tasks = Task::where('context', 'computer')
+                    ->where('done', '!=', null)
                     ->orderBy('created_at','desc')
                     ->get();
 
@@ -66,6 +77,7 @@ class Main extends Controller
     public function show_shopping(){
 
         $tasks = Task::where('context', 'shopping')
+                    ->where('done', '!=', null)
                     ->orderBy('created_at','desc')
                     ->get();
 
@@ -73,7 +85,19 @@ class Main extends Controller
     }
     // ===============================================
     public function task_done($id_task){
-        echo 'done';
+        $task = Task::find($id_task);
+        $task->done = new \DateTime();
+        $task->save();
+
+        return redirect()->route('home');
+    }
+    // ===============================================
+    public function task_undone($id_task){
+        $task = Task::find($id_task);
+        $task->done = null;
+        $task->save();
+
+        return redirect()->route('home');
     }
     // ===============================================
     public function task_edit($id_task){
@@ -91,12 +115,9 @@ class Main extends Controller
         return redirect()->route('home');
     }
     // ===============================================
-    public function task_delete($id_task){
-        echo 'delete';
-    }
-    // ===============================================
     public function task_see_description($id_task){
-        echo 'description';
+        $task = Task::find($id_task);
+        return view('task_see_description', ['task' => $task]);
     }
     // ===============================================
 
