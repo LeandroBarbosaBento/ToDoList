@@ -3,8 +3,10 @@
 @section('content')
 <form method="POST" action="{{route('new_task_submit')}}" >
 @csrf
-
+<h2>Create new task</h2>
+<hr>
 <div class="row">
+    
     <div class="col-md-8">
         <div class="form-group">
             <label for="text_task">Task</label>

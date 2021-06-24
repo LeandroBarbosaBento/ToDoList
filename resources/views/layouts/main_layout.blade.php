@@ -21,22 +21,7 @@
     <div class="container">
         <h1 class="text-center display-1" >TODO LIST</h1>
         <hr>
-        <a href="{{route('new_task_form')}}" class="btn btn-primary mb-2">Create New Task</a>
-        <a href="{{route('home')}}" class="btn btn-primary mb-2">List all tasks</a>
-        
-        <hr>
 
-        <div class="my-2">
-            Contexts: 
-            <a href="{{route('context_home')}}" class="btn btn-outline-primary mb-2">Home</a>
-            <a href="{{route('context_work')}}" class="btn btn-outline-primary mb-2">Work</a>
-            <a href="{{route('context_computer')}}" class="btn btn-outline-primary mb-2">Computer</a>
-            <a href="{{route('context_shopping')}}" class="btn btn-outline-primary mb-2">Shopping</a>
-            
-            
-        </div>
-
-<hr>
         @yield('content')
     </div>
     

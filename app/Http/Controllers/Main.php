@@ -72,6 +72,37 @@ class Main extends Controller
         return view('home',['tasks' => $tasks]);
     }
     // ===============================================
+    public function task_done($id_task){
+        echo 'done';
+    }
+    // ===============================================
+    public function task_edit($id_task){
+        $task = Task::find($id_task);
+        return view('edit_task_form', ['task' => $task]);
+    }
+    // ===============================================
+    public function task_edit_submit(Request $request){
+        $task = Task::find($request->input('id'));
+        $task->task = $request->input('text_task');
+        $task->context = $request->input('select_context');
+        $task->description = $request->input('task_description');
+        $task->save();
+
+        return redirect()->route('home');
+    }
+    // ===============================================
+    public function task_delete($id_task){
+        echo 'delete';
+    }
+    // ===============================================
+    public function task_see_description($id_task){
+        echo 'description';
+    }
+    // ===============================================
+
+    // ===============================================
+
+    // ===============================================
 
     
 }
