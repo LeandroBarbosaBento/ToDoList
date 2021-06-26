@@ -12,7 +12,7 @@
     <div class="col-md-8">
         <div class="form-group">
             <label for="text_task">Task</label>
-            <input type="text" name="text_task" class="form-control" id="text_task" value="{{$task->task}}">
+            <input type="text" name="text_task" class="form-control" id="text_task" value="{{$task->task}}" required>
         </div>
     </div>
 
@@ -31,7 +31,7 @@
 
 <div class="form-group">
     <label for="task_description">Description</label>
-    <textarea class="form-control" id="task_description" name="task_description" rows="3">{{$task->description}}</textarea>
+    <textarea class="form-control" id="task_description" name="task_description" rows="5">{{$task->description}}</textarea>
 </div>
 
 <input type="submit" class="btn btn-primary" value="Save">

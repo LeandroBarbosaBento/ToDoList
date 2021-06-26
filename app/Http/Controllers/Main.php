@@ -14,7 +14,7 @@ class Main extends Controller
         $tasks = Task::where('done', null)
                     ->orderBy('created_at','desc')
                     ->get();
-        return view('home',['tasks' => $tasks]);
+        return view('home',['tasks' => $tasks, 'page' => 'All tasks']);
         /**
          * O argumento chega no interior da view 'home'
          * com o nome 'tasks' dado no vetor
@@ -25,7 +25,14 @@ class Main extends Controller
         $tasks = Task::where('done', '!=', null)
                     ->orderBy('created_at','desc')
                     ->get();
-        return view('home', ['tasks' => $tasks]);
+        return view('home', ['tasks' => $tasks, 'page' => 'Done tasks']);
+    }
+
+    public function home_deleted_tasks(){
+        $tasks = Task::withTrashed()
+                    ->where('deleted_at', '!=', null)
+                    ->get();
+        return view('home', ['tasks' => $tasks, 'page' => 'Deleted tasks']);
     }
 
     // ===============================================
@@ -45,43 +52,43 @@ class Main extends Controller
     // ===============================================
     public function show_home(){
 
-        $tasks = Task::where('context', 'home')
-                    ->where('done', '!=', null)
+        $tasks = Task::where('context', 'Home')
+                    ->where('done', null)
                     ->orderBy('created_at','desc')
                     ->get();
 
-        return view('home',['tasks' => $tasks]);
+        return view('home',['tasks' => $tasks, 'page' => '@home tasks']);
     }
 
     // ===============================================
     public function show_work(){
 
-        $tasks = Task::where('context', 'work')
-                    ->where('done', '!=', null)
+        $tasks = Task::where('context', 'Work')
+                    ->where('done', null)
                     ->orderBy('created_at','desc')
                     ->get();
 
-        return view('home',['tasks' => $tasks]);
+        return view('home',['tasks' => $tasks, 'page' => '@work tasks']);
     }
     // ===============================================
     public function show_computer(){
 
-        $tasks = Task::where('context', 'computer')
-                    ->where('done', '!=', null)
+        $tasks = Task::where('context', 'Computer')
+                    ->where('done', null)
                     ->orderBy('created_at','desc')
                     ->get();
 
-        return view('home',['tasks' => $tasks]);
+        return view('home',['tasks' => $tasks, 'page' => '@computer tasks']);
     }
     // ===============================================
     public function show_shopping(){
 
-        $tasks = Task::where('context', 'shopping')
-                    ->where('done', '!=', null)
+        $tasks = Task::where('context', 'Shopping')
+                    ->where('done', null)
                     ->orderBy('created_at','desc')
                     ->get();
 
-        return view('home',['tasks' => $tasks]);
+        return view('home',['tasks' => $tasks, 'page' => '@shopping tasks']);
     }
     // ===============================================
     public function task_done($id_task){
@@ -110,6 +117,7 @@ class Main extends Controller
         $task->task = $request->input('text_task');
         $task->context = $request->input('select_context');
         $task->description = $request->input('task_description');
+        $task->updated_at = new \DateTime();
         $task->save();
 
         return redirect()->route('home');
@@ -120,6 +128,13 @@ class Main extends Controller
         return view('task_see_description', ['task' => $task]);
     }
     // ===============================================
+    public function task_delete($id_task){
+        $task = Task::find($id_task);
+        $task->deleted_at = new \DateTime();
+        $task->save();
+
+        return redirect()->route('home');
+    }
 
     // ===============================================
 

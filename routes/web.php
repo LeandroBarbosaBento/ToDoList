@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Main@home')->name('home');
 Route::get('/home_done_tasks', 'Main@home_done_tasks')->name('home_done_tasks');
+Route::get('/home_deleted_tasks', 'Main@home_deleted_tasks')->name('home_deleted_tasks');
+
 
 Route::get('/new_task', 'Main@new_task_form')->name('new_task_form');
 

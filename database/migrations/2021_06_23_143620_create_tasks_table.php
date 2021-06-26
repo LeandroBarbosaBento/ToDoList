@@ -22,7 +22,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('task', 250);
             $table->string('context');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->dateTime('done')->nullable();
             $table->dateTime("created_at");
             $table->dateTime('updated_at');

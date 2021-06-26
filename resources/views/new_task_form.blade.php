@@ -10,7 +10,7 @@
     <div class="col-md-8">
         <div class="form-group">
             <label for="text_task">Task</label>
-            <input type="text" name="text_task" class="form-control" id="text_task" placeholder="Task">
+            <input type="text" name="text_task" class="form-control" id="text_task" placeholder="Task" required>
         </div>
     </div>
 
@@ -32,10 +32,10 @@
 
 <div class="form-group">
     <label for="task_description">Description</label>
-    <textarea class="form-control" id="task_description" name="task_description" rows="3" placeholder="Write some information about the task" ></textarea>
+    <textarea class="form-control" id="task_description" name="task_description" rows="5" placeholder="Write some information about the task" ></textarea>
 </div>
 
-<input type="submit" class="btn btn-primary" value="Submit">
+<input type="submit" class="btn btn-primary" value="Save">
 <a href="{{route('home')}}" class="btn btn-secondary">Cancel</a>
 </form>
 @endsection

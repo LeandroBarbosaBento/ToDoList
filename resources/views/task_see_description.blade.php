@@ -27,6 +27,6 @@
         </div>
     </div>
 
-    <a href="{{route('home')}}" class="btn btn-primary">Home</a>
+    <a href="{{route('home')}}" class="btn btn-primary">Go back</a>
 </form>
 @endsection

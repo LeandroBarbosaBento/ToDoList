@@ -3,8 +3,10 @@
 @section('content')
 
 <a href="{{route('new_task_form')}}" class="btn btn-primary mb-2">Create New Task</a>
-<a href="{{route('home')}}" class="btn btn-primary mb-2">List all tasks</a>
-<a href="{{route('home_done_tasks')}}" class="btn btn-primary mb-2">List all done tasks</a>
+<a href="{{route('home')}}" class="btn btn-primary mb-2">List tasks</a>
+<a href="{{route('home_done_tasks')}}" class="btn btn-primary mb-2">List done tasks</a>
+<a href="{{route('home_deleted_tasks')}}" class="btn btn-primary mb-2">List deleted tasks</a>
+
 
 <hr>
 
@@ -18,6 +20,7 @@
 
 <hr>
 
+<h1>{{$page}}</h1>
 
 @if ($tasks->count() === 0)
     <p>There are no tasks.</p>
@@ -43,7 +46,7 @@
                     </a>
                 @else
                     <a href="{{route('task_undone',['id'=> $task->id])}}" class="btn btn-outline-primary btn-sm" title="Uncheck">
-                        <i class="fas fa-times"></i>
+                        <i class="fas fa-times-circle"></i>
                     </a>
                 @endif
                 
@@ -53,6 +56,12 @@
                 <a href="{{route('task_see_description',['id'=> $task->id])}}" class="btn btn-primary btn-sm" title="See description">
                     <i class="fas fa-info-circle"></i>
                 </a>
+                @if ($task->deleted_at == null)
+                    <a href="{{route('task_delete',['id'=> $task->id])}}" class="btn btn-primary btn-sm" title="Delete task">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>                    
+                @endif
+                
             </td>
         </tr>
         @endforeach
